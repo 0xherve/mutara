@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import type { Product } from "@/data/products";
 
 type ProductCardProps = {
@@ -19,11 +20,16 @@ export function ProductCard({ product }: ProductCardProps) {
             >
                 {product.inStock ? "In stock" : "Out of stock"}
             </span>
-            <img
-                alt={product.name}
-                src={product.image}
-                className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
-            />
+            <div className="relative w-full lg:h-80 aspect-square lg:aspect-auto">
+                <Image
+                    alt={product.name}
+                    src={product.image}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 25vw"
+                    className="rounded-md object-cover group-hover:opacity-75"
+                    priority={false}
+                />
+            </div>
             <div className="mt-4 flex justify-between">
                 <div>
                     <h3 className="text-sm text-gray-700">

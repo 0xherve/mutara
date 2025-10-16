@@ -10,7 +10,7 @@ type ProductsGridProps = {
 };
 
 export default function ProductsGrid({ category }: ProductsGridProps) {
-  const [internalCategory, setInternalCategory] = useState<string>("all");
+  const [internalCategory] = useState<string>("all");
   const effectiveCategory = category ?? internalCategory;
   const filtered = useMemo(
     () => (effectiveCategory === "all" ? products : products.filter((p) => p.category === effectiveCategory)),

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
 import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
@@ -34,6 +33,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <main className="min-h-screen">{children}</main>
+        <Toaster />
         <footer className="w-full border-t flex items-center justify-center">
           <div className="mx-auto max-w-7xl px-4 py-6 text-sm text-muted-foreground text-center">
             © {new Date().getFullYear()} Mutara Grocery. All rights reserved.

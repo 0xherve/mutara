@@ -2,16 +2,14 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { products, categories } from "@/data/products";
+// removed unused Card and Badge imports
+import { categories } from "@/data/products";
 import ProductsGrid from "./ProductsGrid";
 import Navbar from "@/components/Navbar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
 
 export default function ProductsPage() {
-  const featured = products.slice(0, 4);
   const [category, setCategory] = useState<string>("all");
   
   return (

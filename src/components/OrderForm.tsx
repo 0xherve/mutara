@@ -33,7 +33,7 @@ type OrderFormProps = {
 export function OrderForm({ defaultValues }: OrderFormProps) {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const form = useForm<OrderFormValues>({
-        resolver: zodResolver(orderSchema) as Resolver<OrderFormValues, any, OrderFormValues>,
+        resolver: zodResolver(orderSchema) as Resolver<OrderFormValues, unknown, OrderFormValues>,
         defaultValues: {
             itemId: defaultValues.itemId,
             itemName: defaultValues.itemName,
@@ -58,15 +58,16 @@ export function OrderForm({ defaultValues }: OrderFormProps) {
             if (!res.ok) throw new Error(data?.error || "Order failed");
             toast.success("Order placed! We will contact you shortly.");
             form.reset({ ...form.getValues(), quantity: 1, notes: "" });
-        } catch (err: any) {
-            toast.error(err?.message || "Something went wrong");
+        } catch (err: unknown) {
+            const message = err instanceof Error ? err.message : "Something went wrong";
+            toast.error(message);
         } finally {
             setIsSubmitting(false);
         }
     };
 
     return (
-        <Form {...form}>
+        <Form {...form}>    
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <FormField

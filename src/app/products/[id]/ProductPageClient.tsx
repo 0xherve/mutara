@@ -91,7 +91,7 @@ function ShareButton() {
           // dynamic import to avoid server refs
           const { toast } = await import("sonner");
           toast.success("Link copied to clipboard");
-        } catch (e) {
+        } catch {
           const { toast } = await import("sonner");
           toast.error("Failed to copy link");
         }

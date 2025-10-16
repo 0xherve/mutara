@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+// removed unused Badge import
 import Navbar from "@/components/Navbar";
 
 export default function AboutPage() {
@@ -30,7 +30,7 @@ export default function AboutPage() {
                 We believe that good food should be convenient, affordable, and delivered with a personal touch.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
-                What started as a small local business has grown into your neighborhood's most trusted grocery delivery service, 
+                What started as a small local business has grown into your neighborhood&apos;s most trusted grocery delivery service, 
                 combining the warmth of a family-owned store with the convenience of modern technology.
               </p>
             </div>

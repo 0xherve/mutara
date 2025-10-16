@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
+    const body: unknown = await req.json();
     // Forward to Make.com webhook URL (to be configured via env)
     const webhookUrl = process.env.MAKE_WEBHOOK_URL;
     if (!webhookUrl) {
@@ -21,8 +21,9 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ success: true });
-  } catch (e: any) {
-    return NextResponse.json({ error: e?.message || "Invalid request" }, { status: 400 });
+  } catch (e: unknown) {
+    const message = e instanceof Error ? e.message : "Invalid request";
+    return NextResponse.json({ error: message }, { status: 400 });
   }
 }
 
