@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   description: "Browse fresh groceries and order for home delivery.",
   metadataBase: new URL("https://example.com"),
   icons: {
-    icon: "/Mutara.svg",
+    icon: "/Mutara.ico",
   },
 };
 

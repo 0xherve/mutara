@@ -55,7 +55,10 @@ export function OrderForm({ defaultValues }: OrderFormProps) {
                 body: JSON.stringify({ ...values, timestamp: new Date().toISOString() }),
             });
             const data = await res.json();
-            if (!res.ok) throw new Error(data?.error || "Order failed");
+            if (!res.ok) {
+                const details = typeof data?.details === "string" ? `: ${data.details}` : "";
+                throw new Error((data?.error || "Order failed") + details);
+            }
             toast.success("Order placed! We will contact you shortly.");
             form.reset({ ...form.getValues(), quantity: 1, notes: "" });
         } catch (err: unknown) {

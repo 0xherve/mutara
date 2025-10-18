@@ -13,7 +13,7 @@ type Props = {
   productId: string;
 };
 
-export default function ProductPageClient({ productId }: Props) {
+export default async function ProductPageClient({ productId }: Props) {
   const product = getProductById(productId);
   if (!product) return null;
 

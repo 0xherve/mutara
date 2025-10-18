@@ -9,7 +9,7 @@ export function generateStaticParams() {
   return products.map((p) => ({ id: p.id }));
 }
 
-export function generateMetadata({ params }: Params): Metadata {
+export async function generateMetadata({ params }: { params: { id: string } }) {
   const product = getProductById(params.id);
   if (!product) return { title: "Product Not Found" };
   const title = `${product.name} - Fresh Grocery Delivery`;
@@ -34,9 +34,13 @@ export function generateMetadata({ params }: Params): Metadata {
   };
 }
 
-export default function ProductDetailPage({ params }: Params) {
-  const product = getProductById(params.id);
+const ProductDetailPage = async ({ params }: Params) => {
+  const { id } = await params;
+  const product = getProductById(id);
   if (!product) return notFound();
 
-  return <ProductPageClient productId={params.id} />;
+  return <ProductPageClient productId={id} />;
 }
+
+
+export default ProductDetailPage;
